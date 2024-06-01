@@ -1,0 +1,43 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="culture">Culture</label>
+    <input id="culture" formControlName="culture" />
+  </div>
+  <div>
+    <label for="age">Age</label>
+    <input id="age" type="number" formControlName="age" />
+  </div>
+  <div>
+    <label for="userName">Username</label>
+    <input id="userName" formControlName="userName" />
+  </div>
+  <div>
+    <label for="street">Street</label>
+    <input id="street" formControlName="street" />
+  </div>
+  <div>
+    <label for="postalCode">Postal Code</label>
+    <input id="postalCode" formControlName="postalCode" />
+  </div>
+  <div>
+    <label for="lastName">Last Name</label>
+    <input id="lastName" formControlName="lastName" />
+  </div>
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name" />
+  </div>
+  <div>
+    <label for="country">Country</label>
+    <input id="country" formControlName="country" />
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" />
+  </div>
+  <button type="submit">Submit</button>
+</form>
