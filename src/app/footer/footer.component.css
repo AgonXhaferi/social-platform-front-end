@@ -11,6 +11,14 @@ footer{
   padding: 20px;
 }
 
+.header-color{
+  color: white;
+}
+
+.content-color{
+  color: #fce7b1;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
