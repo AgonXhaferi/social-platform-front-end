@@ -1,0 +1,23 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo{
+  height: 100%;
+  width: 65px;
+}
+
+a {
+  height: 100%;
+  z-index: 5;
+}
+
+.clickable-title {
+  cursor: pointer;
+}
+
+.clickable-title:hover {
+  text-decoration: none; /* Optional: Remove underline on hover */
+}

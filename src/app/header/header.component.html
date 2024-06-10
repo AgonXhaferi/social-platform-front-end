@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+
+    <a routerLink="/home">
+      <img src="assets/images/logo.png" class="logo" alt="application logo">
+    </a>
+
+    <div [routerLink]="['/']" class="clickable-title">
+      Culture Platforms
+    </div>
+
+    <span class="example-spacer"></span>
+
+    <button mat-icon-button aria-label="Login" [routerLink]="'login'">
+      <mat-icon>login</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
