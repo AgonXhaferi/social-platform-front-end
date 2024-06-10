@@ -1,5 +1,3 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
-
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -19,5 +17,5 @@ a {
 }
 
 .clickable-title:hover {
-  text-decoration: none; /* Optional: Remove underline on hover */
+  text-decoration: none;
 }
