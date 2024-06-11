@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
-import {RegisterComponent} from "./register/register.component";
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
+import SuperTokens from "supertokens-web-js";
+import {SuperTokensConfig} from "../config";
+
+SuperTokens.init(SuperTokensConfig);
 
 @Component({
   selector: 'app-root',
