@@ -9,8 +9,8 @@ export class AuthService {
   constructor(private readonly httpClient: HttpClient) {
   }
 
-  login(loginData: any) {
-    return this.httpClient.post('http://localhost:3000/supertokens/login', loginData)
+  signIn(loginData: any) {
+    return this.httpClient.post('http://localhost:3000/supertokens/signin', loginData)
   }
 
   register(registerData: any) {
