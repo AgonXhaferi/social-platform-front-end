@@ -11,8 +11,12 @@
 
     <span class="example-spacer"></span>
 
-    <button mat-icon-button aria-label="Login" [routerLink]="'login'">
+    <button *ngIf="!isAuthenticated" mat-icon-button aria-label="Login" [routerLink]="['/login']">
       <mat-icon>login</mat-icon>
+    </button>
+
+    <button *ngIf="isAuthenticated" mat-icon-button aria-label="Login" [routerLink]="['/profile']">
+      <mat-icon>person</mat-icon>
     </button>
 
   </mat-toolbar-row>

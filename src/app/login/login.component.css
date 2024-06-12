@@ -1,0 +1,13 @@
+.register-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+mat-card {
+  margin-top: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}

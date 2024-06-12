@@ -1,3 +1,7 @@
+<div *ngIf="spinnerService.spinner$ | async" class="spinner-overlay">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>
+
 <div class="wrapper">
     <app-header></app-header>
     <router-outlet></router-outlet>

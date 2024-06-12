@@ -1,17 +1,27 @@
 import {Component, OnInit} from '@angular/core';
-import {Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
-import {HttpClientModule} from "@angular/common/http";
+import {MatCardActions, MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    MatCardModule,
+    MatLabel,
+    MatFormFieldModule,
+    MatCardActions,
+    MatInputModule,
+    MatButtonModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
+
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
     culture: ['', Validators.required],
