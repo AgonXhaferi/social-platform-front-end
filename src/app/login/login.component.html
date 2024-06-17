@@ -13,6 +13,10 @@
         <mat-label>Password</mat-label>
         <input matInput id="password" type="password" formControlName="password"/>
       </mat-form-field>
+
+      <div class="register-link">
+        <span>No account? <a (click)="navigateToRegister()">Register!</a></span>
+      </div>
     </mat-card-content>
 
     <mat-card-actions>

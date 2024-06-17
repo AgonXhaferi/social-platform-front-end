@@ -11,3 +11,23 @@ mat-form-field {
   width: 100%;
   margin-bottom: 16px;
 }
+
+.register-link {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.register-link span {
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
