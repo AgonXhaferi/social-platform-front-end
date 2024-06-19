@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-
-    <a routerLink="/home">
+    <!--TODO: Define a specific DIV here and use the (click) on that DIV instead of repeating yourself.-->
+    <a (click)="redirect()">
       <img src="assets/images/logo.png" class="logo" alt="application logo">
     </a>
 
-    <div [routerLink]="['/']" class="clickable-title">
+    <div (click)="redirect()" class="clickable-title">
       Culture Platforms
     </div>
 

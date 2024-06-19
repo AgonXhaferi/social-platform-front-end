@@ -13,7 +13,7 @@ export class AuthService {
 
 
   constructor(private readonly httpClient: HttpClient) {
-    this.checkAuthStatus();
+    this.checkAuthStatus().then();
   }
 
   signIn(loginData: any): Observable<SignInResponse> {

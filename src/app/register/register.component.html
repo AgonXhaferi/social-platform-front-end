@@ -4,55 +4,74 @@
       <mat-card-title>Registration Form</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-form-field appearance="fill">
-        <mat-label>Culture</mat-label>
-        <input matInput id="culture" formControlName="culture" />
-      </mat-form-field>
+      <mat-accordion>
+        <!-- Personal Info Tab -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal Info
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field appearance="fill">
+            <mat-label>Culture</mat-label>
+            <input matInput id="culture" formControlName="culture" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Age</mat-label>
+            <input matInput id="age" type="number" formControlName="age" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput id="userName" formControlName="userName" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput id="name" formControlName="name" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput id="lastName" formControlName="lastName" />
+          </mat-form-field>
+        </mat-expansion-panel>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Age</mat-label>
-        <input matInput id="age" type="number" formControlName="age" />
-      </mat-form-field>
+        <!-- Address Tab -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Address
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput id="street" formControlName="street" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Postal Code</mat-label>
+            <input matInput id="postalCode" formControlName="postalCode" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <input matInput id="country" formControlName="country" />
+          </mat-form-field>
+        </mat-expansion-panel>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput id="userName" formControlName="userName" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Street</mat-label>
-        <input matInput id="street" formControlName="street" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Postal Code</mat-label>
-        <input matInput id="postalCode" formControlName="postalCode" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Last Name</mat-label>
-        <input matInput id="lastName" formControlName="lastName" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput id="name" formControlName="name" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Country</mat-label>
-        <input matInput id="country" formControlName="country" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput id="email" type="email" formControlName="email" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput id="password" type="password" formControlName="password" />
-      </mat-form-field>
+        <!-- Email Tab -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Email
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput id="email" type="email" formControlName="email" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput id="password" type="password" formControlName="password" />
+          </mat-form-field>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>

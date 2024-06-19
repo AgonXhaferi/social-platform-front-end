@@ -5,6 +5,9 @@ import {MatCardActions, MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {MatAccordion, MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
+import {Router} from "@angular/router";
+import {SpinnerService} from "../services/spinner.service";
 
 @Component({
   selector: 'app-register',
@@ -17,6 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatCardActions,
     MatInputModule,
     MatButtonModule,
+    MatAccordion,
+    MatExpansionModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -38,7 +43,9 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private spinnerService: SpinnerService,
+              private router: Router) {
 
   }
 
@@ -58,10 +65,19 @@ export class RegisterComponent implements OnInit {
 
       this.authService.register(registerData)
         .subscribe(data => {
-          debugger;
-          console.log(data)
+          this.navigateToWelcome()
         })
     }
+  }
+
+  navigateToWelcome() {
+    this.router.navigate(['/welcome'])
+      .then(
+        () => {
+          this.authService.isAuthenticatedSubject.next(true)
+          this.spinnerService.hide()
+        }
+      )
   }
 
 }

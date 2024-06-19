@@ -45,8 +45,9 @@ export class LoginComponent implements OnInit {
     this.authService.isAuthenticated$.subscribe(
       (isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigate(['/home'])
-        }  //TODO: there's probably a better solution than this.
+          this.router.navigate(['/welcome'])
+            .then()
+        }
       })
   }
 
@@ -75,13 +76,13 @@ export class LoginComponent implements OnInit {
             return;
           }
 
-          this.navigateToHome()
+          this.navigateToWelcome()
         })
     }
   }
 
-  navigateToHome() {
-    this.router.navigate(['/home'])
+  navigateToWelcome() {
+    this.router.navigate(['/welcome'])
       .then(
         () => {
           this.authService.isAuthenticatedSubject.next(true)
