@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {CultureDto} from "../dto/culture.dto";
 import {Observable} from "rxjs";
 import {CulturesComponent} from "../cultures/cultures.component";
@@ -13,6 +13,12 @@ export class CulturesService {
   }
 
   findCultureById(cultureId: string): Observable<CultureDto[]> {
-    return this.httpClient.get<CultureDto[]>(`http://localhost:3000/cultures/${cultureId}`)
+    return this.httpClient.get<CultureDto[]>(`http://localhost:3000/culture`, {
+      params: new HttpParams({
+        fromObject: {
+          cultureName: cultureId,
+        }
+      })
+    })
   }
 }

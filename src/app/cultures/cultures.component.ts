@@ -20,7 +20,6 @@ import {FormsModule} from "@angular/forms";
 export class CulturesComponent implements OnInit, OnDestroy {
   cultures$: Observable<CultureDto[]> = of([]);
   private searchTerms = new Subject<string>();
-  searchTerm: string = '';
 
   constructor(
     private culturesService: CulturesService,
@@ -34,14 +33,20 @@ export class CulturesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cultures$ = this.searchTerms.pipe(
-      debounceTime(300), // wait for 300ms pause in events
-      distinctUntilChanged(), // ignore if next search term is same as previous
+      debounceTime(300),
+      distinctUntilChanged(),
       switchMap(term =>
         term
-          ? this.culturesService.findCultureById(term) // return the http search observable
-          : of<CultureDto[]>([]) // or the observable of empty heroes if no search term
+          ? this.culturesService.findCultureById(term).pipe(
+            catchError(error => {
+              console.error(`Error in component: ${JSON.stringify(error)}`);
+              return of<CultureDto[]>([]);
+            })
+          )
+          : of<CultureDto[]>([])
       ),
       catchError(error => {
+        debugger;
         console.error(`Error in component: ${error}`);
         return of<CultureDto[]>([]);
       })
