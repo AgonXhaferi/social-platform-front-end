@@ -5,6 +5,7 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {CulturesComponent} from "./cultures/cultures.component";
+import {CultureUsersComponent} from "./culture-users/culture-users.component";
 
 export const routes: Routes = [
   {
@@ -27,5 +28,8 @@ export const routes: Routes = [
   },
   {
     path: 'cultures', component: CulturesComponent
+  },
+  {
+    path: 'cultures/:cultureName', component: CultureUsersComponent
   }
 ];

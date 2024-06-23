@@ -1,0 +1,29 @@
+mat-card {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.search-field {
+  width: 100%;
+}
+
+mat-list-item {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 8px 0;
+}
+
+mat-list-item:hover {
+  background-color: #a6abea;
+  border-radius: 1em;
+}
+
+.mat-icon {
+  margin-right: 16px;
+  margin-bottom: -5px;
+}
+
+mat-list {
+  margin-top: 20px;
+}

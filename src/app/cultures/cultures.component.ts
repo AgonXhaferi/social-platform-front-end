@@ -5,6 +5,12 @@ import {CulturesService} from "../services/cultures.service";
 import {Router} from "@angular/router";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInput} from "@angular/material/input";
+import {MatLine} from "@angular/material/core";
 
 @Component({
   selector: 'app-cultures',
@@ -12,12 +18,18 @@ import {FormsModule} from "@angular/forms";
   imports: [
     AsyncPipe,
     FormsModule,
-    NgForOf
+    NgForOf,
+    MatCardModule,
+    MatFormFieldModule,
+    MatListModule,
+    MatIconModule,
+    MatInput,
+    MatLine
   ],
   templateUrl: './cultures.component.html',
   styleUrl: './cultures.component.css'
 })
-export class CulturesComponent implements OnInit, OnDestroy {
+export class CulturesComponent implements OnInit {
   cultures$: Observable<CultureDto[]> = of([]);
   private searchTerms = new Subject<string>();
 
@@ -54,10 +66,7 @@ export class CulturesComponent implements OnInit, OnDestroy {
   }
 
   gotoDetail(culture: CultureDto): void {
-    const link = ['/users', culture];
+    const link = ['/cultures', culture.name];
     this.router.navigate(link);
-  }
-
-  ngOnDestroy(): void {
   }
 }
