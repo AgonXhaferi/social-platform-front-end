@@ -1,7 +1,7 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .wrapper {
-  min-height: 89.2vh;
+  min-height: 85.2vh;
   display: flex;
   flex-direction: column;
 }

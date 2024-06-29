@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {CultureDto} from "../dto/culture.dto";
 import {Observable} from "rxjs";
 import {CulturesComponent} from "../cultures/cultures.component";
+import {UserDto} from "../dto/user.dto";
 
 @Injectable({
   providedIn: 'root'

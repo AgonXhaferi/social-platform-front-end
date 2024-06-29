@@ -58,7 +58,6 @@ export class CulturesComponent implements OnInit {
           : of<CultureDto[]>([])
       ),
       catchError(error => {
-        debugger;
         console.error(`Error in component: ${error}`);
         return of<CultureDto[]>([]);
       })
