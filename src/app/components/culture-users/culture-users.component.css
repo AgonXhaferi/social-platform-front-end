@@ -1,3 +1,24 @@
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 10%;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 2em; /* Increase font size */
+  font-weight: 600; /* Make the text semi-bold */
+  color: #333; /* Change the color to a dark gray */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add subtle text shadow */
+  padding: 10px 0; /* Add padding to create space around the text */
+  text-align: left; /* Align text to the left */
+}
+
 .table-container {
   width: 70%;
   margin-inline: auto;

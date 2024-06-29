@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../services/auth.service";
-import {SpinnerService} from "../services/spinner.service";
 import {addWarning} from "@angular-devkit/build-angular/src/utils/webpack-diagnostics";
+import {AuthService} from "../../services/auth.service";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-profile',

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
 import {MatCardActions, MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatAccordion, MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
 import {Router} from "@angular/router";
-import {SpinnerService} from "../services/spinner.service";
+import {AuthService} from "../../services/auth.service";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-register',

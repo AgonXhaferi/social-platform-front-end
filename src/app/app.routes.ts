@@ -1,11 +1,12 @@
 import {Routes} from '@angular/router';
-import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
-import {HomeComponent} from "./home/home.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {WelcomeComponent} from "./welcome/welcome.component";
-import {CulturesComponent} from "./cultures/cultures.component";
-import {CultureUsersComponent} from "./culture-users/culture-users.component";
+import {HomeComponent} from "./components/home/home.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {LoginComponent} from "./components/login/login.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {CulturesComponent} from "./components/cultures/cultures.component";
+import {CultureUsersComponent} from "./components/culture-users/culture-users.component";
+
 
 export const routes: Routes = [
   {

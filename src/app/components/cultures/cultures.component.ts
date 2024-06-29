@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {catchError, debounceTime, distinctUntilChanged, Observable, of, Subject, Subscription, switchMap} from "rxjs";
 import {CultureDto} from "../dto/culture.dto";
-import {CulturesService} from "../services/cultures.service";
 import {Router} from "@angular/router";
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
@@ -11,6 +10,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {MatLine} from "@angular/material/core";
+import {CulturesService} from "../../services/cultures.service";
 
 @Component({
   selector: 'app-cultures',

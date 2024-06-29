@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {CultureDto} from "../dto/culture.dto";
 import {Observable} from "rxjs";
-import {CulturesComponent} from "../cultures/cultures.component";
-import {UserDto} from "../dto/user.dto";
+import {CultureDto} from "../components/dto/culture.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +19,9 @@ export class CulturesService {
         }
       })
     })
+  }
+
+  subscribeToCulture(){
+
   }
 }

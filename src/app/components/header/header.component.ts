@@ -3,8 +3,8 @@ import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {Router, RouterLink} from "@angular/router";
 import {MatIconButton} from "@angular/material/button";
-import {AuthService} from "../services/auth.service";
 import {NgIf} from "@angular/common";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-header',

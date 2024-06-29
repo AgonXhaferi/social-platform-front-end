@@ -1,14 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {of} from "rxjs";
-import Session from "supertokens-web-js/recipe/session";
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {Router} from "@angular/router";
-import {SpinnerService} from "../services/spinner.service";
+import {SpinnerService} from "../../services/spinner.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
