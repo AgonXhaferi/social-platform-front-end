@@ -7,6 +7,7 @@ import {AsyncPipe, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
 import {MatButton} from "@angular/material/button";
 import {CulturesService} from "../../services/cultures.service";
+import Session from "supertokens-web-js/recipe/session";
 
 @Component({
   selector: 'app-culture-users',
@@ -16,7 +17,7 @@ import {CulturesService} from "../../services/cultures.service";
   styleUrl: './culture-users.component.css'
 })
 export class CultureUsersComponent implements OnInit {
-  culture: string | null = ""
+  culture: string = ""
   users: UserDto[] = []
   displayedColumns: string[] = ['name', 'lastname', 'username', 'email', 'country', 'postalCode', 'street', 'age'];
 
@@ -28,7 +29,7 @@ export class CultureUsersComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.pipe(
       concatMap(params => {
-        this.culture = params.get('cultureName');
+        this.culture = params.get('cultureName')!; //TODO: find a better way to handle this.
 
         if (!this.culture) {
           alert('Culture path variable incorrect');
@@ -47,7 +48,16 @@ export class CultureUsersComponent implements OnInit {
     console.log('User ID:', row.id);
   }
 
-  subscribe() {
-    this.cultureService.subscribeToCulture()
+  async subscribe() {
+    const userId = await Session.getUserId()
+
+    this.cultureService.subscribeToCulture({
+      userId,
+      cultureId: this.culture
+    })
+      .subscribe(data => {
+        debugger;
+        console.log(data)
+      })
   }
 }
