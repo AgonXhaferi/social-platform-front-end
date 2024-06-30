@@ -6,6 +6,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {CulturesComponent} from "./components/cultures/cultures.component";
 import {CultureUsersComponent} from "./components/culture-users/culture-users.component";
+import {UserProfileComponent} from "./components/user-profile/user-profile.component";
 
 
 export const routes: Routes = [
@@ -32,5 +33,8 @@ export const routes: Routes = [
   },
   {
     path: 'cultures/:cultureName', component: CultureUsersComponent
+  },
+  {
+    path: 'users/:userId', component: UserProfileComponent
   }
 ];
