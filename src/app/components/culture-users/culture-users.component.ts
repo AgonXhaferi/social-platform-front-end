@@ -36,7 +36,6 @@ export class CultureUsersComponent implements OnInit {
     zip([this.route.paramMap, from(Session.getUserId())])
       .pipe(
         concatMap(([params, userId]) => {
-          debugger;
           this.culture = params.get('cultureName')!;
 
           if (!this.culture) {
@@ -80,7 +79,6 @@ export class CultureUsersComponent implements OnInit {
           })
         })
       ).subscribe(data => {
-      debugger;
       this.isCultureSubscribedByUser = true
       console.log(data)
     })

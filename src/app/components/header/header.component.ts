@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
   }
 
   redirect(){
-    debugger;
     if(this.isAuthenticated){
       this.router.navigate(['/welcome'])
     }

@@ -39,7 +39,6 @@ export class UserProfileComponent implements OnInit {
     ])
       .pipe(
         concatMap(([paramMap, userId]) => {
-          debugger;
           this.cultureUserId = paramMap.get('userId')
 
           if (this.cultureUserId) {
@@ -75,8 +74,6 @@ export class UserProfileComponent implements OnInit {
     from(Session.getUserId())
       .pipe(
         concatMap(userId => {
-          debugger;
-
           if (this.cultureUserId) {
             const followUserDto: FollowUserDto = {
               followerId: this.cultureUserId,

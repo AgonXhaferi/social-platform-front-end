@@ -17,7 +17,6 @@ export class UserService {
   }
 
   findUserById = (userId: string): Observable<UserDto> => {
-    debugger;
     return this.httpClient.get<UserDto>(`http://localhost:3000/users/${userId}`)
   }
 
@@ -25,7 +24,6 @@ export class UserService {
     this.httpClient.post<string>(`http://localhost:3000/users/follow`, followUserDto)
 
   areUserFollowers = (followUserDto: FollowUserDto): Observable<boolean> => {
-    debugger;
     return this.httpClient.get<boolean>(`http://localhost:3000/users/follow/are-followers`, {
         params: new HttpParams({
           fromObject: {
