@@ -12,6 +12,9 @@ export class UserService {
   }
 
   findUsersByPrimaryCultureId(cultureId: string): Observable<UserDto[]> {
-    return this.httpClient.get<UserDto[]>(`http://localhost:3000/users/${cultureId}`)
+    return this.httpClient.get<UserDto[]>(`http://localhost:3000/users/culture/${cultureId}`)
   }
+
+  findUserById = (userId: string): Observable<UserDto> =>
+    this.httpClient.get<UserDto>(`http://localhost:3000/users/${userId}`)
 }

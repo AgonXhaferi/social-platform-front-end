@@ -1,1 +1,20 @@
-<p>user-profile works!</p>
+<div class="user-detail-container">
+  <mat-card class="user-card">
+    <mat-card-header>
+      <div mat-card-avatar class="user-image"></div>
+      <mat-card-title>{{ user?.name }} {{ user?.lastname }}</mat-card-title>
+      <mat-card-subtitle>{{ user?.username }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Email:</strong> {{ user?.email }}</p>
+      <p><strong>Country:</strong> {{ user?.country }}</p>
+      <p><strong>Postal Code:</strong> {{ user?.postalCode }}</p>
+      <p><strong>Street:</strong> {{ user?.street }}</p>
+      <p><strong>Age:</strong> {{ user?.age }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="followUser()">Follow</button>
+      <button mat-raised-button color="accent" (click)="chatWithUser()">Chat</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
