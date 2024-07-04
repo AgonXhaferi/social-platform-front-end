@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill" class="search-field">
+  <mat-label>Send message</mat-label>
+  <input matInput #searchBox (input)="send(searchBox.value)"/>
+</mat-form-field>
+
+
+<ol>
+  <li *ngFor="let message of messages">
+    {{message}}
+  </li>
+</ol>
