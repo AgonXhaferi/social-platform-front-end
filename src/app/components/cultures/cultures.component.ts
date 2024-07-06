@@ -44,6 +44,7 @@ export class CulturesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Example")
     this.cultures$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
