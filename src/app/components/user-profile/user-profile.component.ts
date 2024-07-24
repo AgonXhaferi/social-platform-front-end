@@ -10,6 +10,7 @@ import Session from "supertokens-web-js/recipe/session";
 import {FollowUserDto} from "../dto/follow-user.dto";
 import {NgIf} from "@angular/common";
 import {SpinnerService} from "../../services/spinner.service";
+import {ChatService} from "../../services/chat.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -20,12 +21,15 @@ import {SpinnerService} from "../../services/spinner.service";
 })
 export class UserProfileComponent implements OnInit {
 
-  cultureUserId?: string | null
+  cultureUsersId: string | null = ""
   cultureUser?: UserDto
+
+  userId: string = ""
   areFollowers: boolean = false
 
   constructor(private _activeRoute: ActivatedRoute,
               private _userService: UserService,
+              private _chatService: ChatService,
               private _spinnerService: SpinnerService) {
   }
 
@@ -39,13 +43,14 @@ export class UserProfileComponent implements OnInit {
     ])
       .pipe(
         concatMap(([paramMap, userId]) => {
-          this.cultureUserId = paramMap.get('userId')
+          this.cultureUsersId = paramMap.get('userId')
+          this.userId = userId
 
-          if (this.cultureUserId) {
+          if (this.cultureUsersId) {
             return zip([
-              this._userService.findUserById(this.cultureUserId),
+              this._userService.findUserById(this.cultureUsersId),
               this._userService.areUserFollowers({
-                followerId: this.cultureUserId,
+                followerId: this.cultureUsersId,
                 followeeId: userId
               })
             ])
@@ -61,7 +66,7 @@ export class UserProfileComponent implements OnInit {
 
             this._spinnerService.hide()
           } else {
-            alert(`User with ID: ${this.cultureUserId} does not exist.`)
+            alert(`User with ID: ${this.cultureUsersId} does not exist.`)
           }
         }
       )
@@ -74,9 +79,9 @@ export class UserProfileComponent implements OnInit {
     from(Session.getUserId())
       .pipe(
         concatMap(userId => {
-          if (this.cultureUserId) {
+          if (this.cultureUsersId) {
             const followUserDto: FollowUserDto = {
-              followerId: this.cultureUserId,
+              followerId: this.cultureUsersId,
               followeeId: userId
             }
 
@@ -94,6 +99,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   chatWithUser() {
-
+    if (this.cultureUsersId)
+      this._chatService.doesChatExist({
+        userOneId: this.cultureUsersId,
+        userTwoId: this.userId
+      }).subscribe(doesExist => console.log(doesExist))
   }
 }
