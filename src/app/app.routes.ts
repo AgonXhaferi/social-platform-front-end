@@ -39,6 +39,6 @@ export const routes: Routes = [
     path: 'users/:userId', component: UserProfileComponent
   },
   {
-    path: 'chat', component: ChatComponent
+    path: 'chat/:chatId', component: ChatComponent
   }
 ];

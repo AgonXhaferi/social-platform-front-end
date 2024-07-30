@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserDto} from "../dto/user.dto";
-import {concatMap, forkJoin, from, zip} from "rxjs";
+import {catchError, concatMap, forkJoin, from, of, zip} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
@@ -11,6 +11,7 @@ import {FollowUserDto} from "../dto/follow-user.dto";
 import {NgIf} from "@angular/common";
 import {SpinnerService} from "../../services/spinner.service";
 import {ChatService} from "../../services/chat.service";
+import {UserChatDto} from "../dto/users-chat.dto";
 
 @Component({
   selector: 'app-user-profile',
@@ -30,7 +31,8 @@ export class UserProfileComponent implements OnInit {
   constructor(private _activeRoute: ActivatedRoute,
               private _userService: UserService,
               private _chatService: ChatService,
-              private _spinnerService: SpinnerService) {
+              private _spinnerService: SpinnerService,
+              private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -103,6 +105,22 @@ export class UserProfileComponent implements OnInit {
       this._chatService.doesChatExist({
         userOneId: this.cultureUsersId,
         userTwoId: this.userId
-      }).subscribe(doesExist => console.log(doesExist))
+      }).pipe(
+        concatMap(doesChatExistValue => {
+          return from(this._router.navigate([`/chat`, doesChatExistValue.id]))
+        }),
+        catchError(err => {
+          debugger;
+          return this._chatService.createChat(<UserChatDto>{
+            userOneId: this.cultureUsersId,
+            userTwoId: this.userId
+          })
+        })
+      ).subscribe(responseId => {
+        if (typeof responseId === "string") {
+          this._router.navigate([`/chat`, responseId])
+            .then()
+        }
+      })
   }
 }
