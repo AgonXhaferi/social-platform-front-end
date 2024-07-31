@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {io, Socket} from "socket.io-client";
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {NgForOf} from "@angular/common";
+import {ChatService} from "../../services/chat.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-chat',
@@ -18,6 +20,10 @@ import {NgForOf} from "@angular/common";
 export class ChatComponent implements OnInit, OnDestroy {
   socket?: Socket
   messages: string[] = [];
+
+  constructor(private _chatService: ChatService,
+              private _activatedRoute: ActivatedRoute,) {
+  }
 
   ngOnInit(): void {
     debugger;
