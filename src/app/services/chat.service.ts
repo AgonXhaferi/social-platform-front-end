@@ -30,6 +30,6 @@ export class ChatService {
   }
 
   findChatById(id: string): Observable<UserChatResponseDto> {
-    return this.httpClient.get<UserChatResponseDto>(`http://localhost:3000/chat${id}`)
+    return this.httpClient.get<UserChatResponseDto>(`http://localhost:3000/chat/${id}`)
   }
 }

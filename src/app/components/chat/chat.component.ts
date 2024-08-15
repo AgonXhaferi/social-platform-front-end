@@ -7,6 +7,7 @@ import {ActivatedRoute} from "@angular/router";
 import {concatMap, from, zip} from "rxjs";
 import {MessageDto} from "../dto/message.dto";
 import Session from "supertokens-web-js/recipe/session";
+import {SendMessageDto} from "../dto/send-message.dto";
 
 @Component({
   selector: 'app-chat',
@@ -26,6 +27,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   userId: string | undefined
   selectedUserId: string | undefined//I'm thinking of just saving this on localStorage at this point. I'm making 100 calls.
+  chatId: string | null | undefined
 
   mainUsersMessages: MessageDto[] = []
   selectedUsersMessages: MessageDto[] = []
@@ -37,15 +39,15 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._activatedRoute.paramMap.pipe(
       concatMap(paramMap => {
-        const chatId = paramMap.get('chatId')
-        if (!chatId) {
+        this.chatId = paramMap.get('chatId')
+        if (!this.chatId) {
           alert('chatId param missing')
 
           throw new Error('chatId param must be provided')
         }
 
         return zip([
-            this._chatService.findChatById(chatId),
+            this._chatService.findChatById(this.chatId),
             from(Session.getUserId())
           ]
         )
@@ -70,18 +72,25 @@ export class ChatComponent implements OnInit, OnDestroy {
         }
       })
 
+      debugger;
       this.socket = io('http://localhost:3001');
-      this.socket.on('message', (data: string) => this.messageListener(data))
+      this.socket.on('message', (data: SendMessageDto) => this.messageListener(data))
     })
   }
 
   send(messageValue: string) {
     debugger;
-    this.socket?.emit('message', messageValue);
+    this.socket?.emit('message', <SendMessageDto>{
+      content: messageValue,
+      senderId: this.userId,
+      timestamp: new Date(),
+      chatId: this.chatId
+    });
+    // this.socket?.emit('message', messageValue);
   }
 
-  messageListener(messageValue: string) {
-    this.messages = [...this.messages, messageValue];
+  messageListener(messageValue: SendMessageDto) {
+    this.messages = [...this.messages, messageValue.content];
   }
 
   ngOnDestroy(): void {
