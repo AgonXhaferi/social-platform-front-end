@@ -1,3 +1,8 @@
 <div class="welcome-container">
   <p class="welcome-text">Welcome to cultural platforms!</p>
 </div>
+@if (isUserLoggedIn) {
+  <app-welcome></app-welcome>
+}
+
+<app-footer class="app-footer"></app-footer>

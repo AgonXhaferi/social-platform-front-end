@@ -1,11 +1,15 @@
-<mat-form-field appearance="fill" class="search-field">
-  <mat-label>Send message</mat-label>
-  <input matInput #searchBox (input)="send(searchBox.value)"/>
-</mat-form-field>
+<div class="chat-container">
+  <div *ngFor="let message of messages" class="message-wrapper" [ngClass]="{'sent': message.senderId === userId, 'received': message.senderId !== userId}">
+    <div class="message-content">
+      {{ message.content }}
+    </div>
+    <div class="timestamp">
+      {{ message.timestamp | date:'shortTime' }}
+    </div>
+  </div>
+</div>
 
-
-<ol>
-  <li *ngFor="let message of messages">
-    {{message}}
-  </li>
-</ol>
+<div class="send-message-bar">
+  <input type="text" placeholder="Type a message..." [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" />
+  <button (click)="sendMessage()">Send</button>
+</div>

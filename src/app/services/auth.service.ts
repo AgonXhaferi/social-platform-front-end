@@ -38,6 +38,8 @@ export class AuthService {
   async checkAuthStatus() {
     const doesSessionExist = await Session.doesSessionExist();
     this.isAuthenticatedSubject.next(doesSessionExist);
+
+    return doesSessionExist;
   }
 
   async getAccessToken() {

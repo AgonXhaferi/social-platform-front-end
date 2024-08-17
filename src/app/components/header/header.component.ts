@@ -33,17 +33,7 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  async logout() {
-    await this.authService.signOut();
+  redirect() {
+    this.router.navigate(['/'])
   }
-
-  redirect(){
-    if(this.isAuthenticated){
-      this.router.navigate(['/welcome'])
-    }
-    else{
-      this.router.navigate(['/'])
-    } //TODO: Definitely a better solution than this, review angular routes later on.
-  }
-
 }
