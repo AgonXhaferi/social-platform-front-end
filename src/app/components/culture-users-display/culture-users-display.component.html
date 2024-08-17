@@ -1,0 +1,54 @@
+<div class="table-container">
+  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let user"> {{ user.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef> Last Name</th>
+      <td mat-cell *matCellDef="let user"> {{ user.lastname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username</th>
+      <td mat-cell *matCellDef="let user"> {{ user.username }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let user"> {{ user.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef> Country</th>
+      <td mat-cell *matCellDef="let user"> {{ user.country }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="postalCode">
+      <th mat-header-cell *matHeaderCellDef> Postal Code</th>
+      <td mat-cell *matCellDef="let user"> {{ user.postalCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef> Street</th>
+      <td mat-cell *matCellDef="let user"> {{ user.street }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef> Age</th>
+      <td mat-cell *matCellDef="let user"> {{ user.age }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-button class="view-button" (click)="onRowClicked(row)">View</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)" class="clickable-row"></tr>
+  </table>
+</div>
