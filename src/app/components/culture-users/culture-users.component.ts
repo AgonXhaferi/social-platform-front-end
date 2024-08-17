@@ -9,18 +9,29 @@ import {MatButton} from "@angular/material/button";
 import {CulturesService} from "../../services/cultures.service";
 import Session from "supertokens-web-js/recipe/session";
 import {SpinnerService} from "../../services/spinner.service";
+import {MatTab} from "@angular/material/tabs";
 
 @Component({
   selector: 'app-culture-users',
   standalone: true,
-  imports: [MatTableModule, AsyncPipe, NgIf, MatButton],
+  imports: [MatTableModule, AsyncPipe, NgIf, MatButton, MatTab],
   templateUrl: './culture-users.component.html',
   styleUrl: './culture-users.component.css'
 })
 export class CultureUsersComponent implements OnInit {
   culture: string = ""
   users: UserDto[] = []
-  displayedColumns: string[] = ['name', 'lastname', 'username', 'email', 'country', 'postalCode', 'street', 'age', 'view'];
+  displayedColumns: string[] = [
+    'name',
+    'lastname',
+    'username',
+    'email',
+    'country',
+    'postalCode',
+    'street',
+    'age',
+    'view'
+  ];
   isCultureSubscribedByUser: boolean = false
 
   constructor(private route: ActivatedRoute,
@@ -51,23 +62,18 @@ export class CultureUsersComponent implements OnInit {
             })
           ])
         })
-      ).subscribe(([usersOfPrimaryCulture, isUserSubscribed]) => {
-      this.users = usersOfPrimaryCulture;
-      this.isCultureSubscribedByUser = isUserSubscribed
+      ).subscribe(
+      ([
+         usersOfPrimaryCulture,
+         isUserSubscribed
+       ]) => {
+        this.users = usersOfPrimaryCulture;
+        this.isCultureSubscribedByUser = isUserSubscribed
 
-      this.spinnerService.hide()
-    })
+        this.spinnerService.hide()
+      })
   }
 
-  onRowClicked(row: UserDto): void {
-    this.spinnerService.show()
-
-    const link = ['/users', row.id];
-
-    this.router.navigate(link).then(
-      () => this.spinnerService.hide()
-    )
-  }
 
   async subscribe() {
     from(Session.getUserId())
@@ -80,10 +86,14 @@ export class CultureUsersComponent implements OnInit {
         })
       ).subscribe(data => {
       this.isCultureSubscribedByUser = true
-      console.log(data)
     })
   }
 
-  viewUserProfile(id: string) {
+  createEvent() {
+
+  }
+
+  createArticle() {
+
   }
 }
