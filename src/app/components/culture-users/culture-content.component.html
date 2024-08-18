@@ -1,0 +1,42 @@
+<div class="header-section">
+  <h2>{{ culture }} Culture!</h2>
+  <button mat-raised-button color="primary" class="subscribe-button" (click)="subscribe()"
+          [disabled]="isCultureSubscribedByUser">
+    {{ isCultureSubscribedByUser ? 'Subscribed' : 'Subscribe' }}
+  </button>
+</div>
+
+<div class="content-section">
+  <div class="connect-users-section">
+    <h3>Connect with Users</h3>
+    <div class="connect-users-content">
+      <button mat-raised-button color="primary" (click)="navigateToUsers()">Go to Users Page</button>
+    </div>
+  </div>
+
+  <div class="latest-content-header">
+    <h1>Check out the latest articles and events</h1>
+  </div>
+
+  <div class="culture-content">
+    <div class="culture-articles-section">
+      <h3>Culture Articles</h3>
+      <ul>
+        <li *ngFor="let article of topArticles" (click)="navigateToArticle(article)">
+          {{ article.title }}
+        </li>
+      </ul>
+      <button mat-raised-button color="primary" (click)="navigateToAllArticles()">View All Articles</button>
+    </div>
+
+    <div class="culture-events-section">
+      <h3>Culture Events</h3>
+      <ul>
+        <li *ngFor="let event of topEvents" (click)="navigateToEvent(event)">
+          {{ event.title }}
+        </li>
+      </ul>
+      <button mat-raised-button color="primary" (click)="navigateToAllEvents()">View All Events</button>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MatTableModule} from "@angular/material/table";
 import {UserDto} from "../dto/user.dto";
 import {concatMap, forkJoin, from, zip} from "rxjs";
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
 import {MatButton} from "@angular/material/button";
 import {CulturesService} from "../../services/cultures.service";
@@ -14,28 +14,17 @@ import {MatTab} from "@angular/material/tabs";
 @Component({
   selector: 'app-culture-users',
   standalone: true,
-  imports: [MatTableModule, AsyncPipe, NgIf, MatButton, MatTab],
-  templateUrl: './culture-users.component.html',
-  styleUrl: './culture-users.component.css'
+  imports: [MatTableModule, AsyncPipe, NgIf, MatButton, MatTab, NgForOf],
+  templateUrl: './culture-content.component.html',
+  styleUrl: './culture-content.component.css'
 })
-export class CultureUsersComponent implements OnInit {
+export class CultureContentComponent implements OnInit {
   culture: string = ""
-  users: UserDto[] = []
-  displayedColumns: string[] = [
-    'name',
-    'lastname',
-    'username',
-    'email',
-    'country',
-    'postalCode',
-    'street',
-    'age',
-    'view'
-  ];
   isCultureSubscribedByUser: boolean = false
+  topArticles: any;
+  topEvents: any;
 
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
               private cultureService: CulturesService,
               private spinnerService: SpinnerService,
               private router: Router) {
@@ -54,20 +43,15 @@ export class CultureUsersComponent implements OnInit {
             throw new Error('Culture path variable incorrect');
           }
 
-          return zip([
-            this.userService.findUsersByPrimaryCultureId(this.culture),
-            this.cultureService.findIsUserSubscribedToCulture({
-              userId,
-              cultureId: this.culture
-            })
-          ])
+          return this.cultureService.findIsUserSubscribedToCulture({
+            userId,
+            cultureId: this.culture
+          })
         })
       ).subscribe(
-      ([
-         usersOfPrimaryCulture,
-         isUserSubscribed
-       ]) => {
-        this.users = usersOfPrimaryCulture;
+      (
+        isUserSubscribed
+      ) => {
         this.isCultureSubscribedByUser = isUserSubscribed
 
         this.spinnerService.hide()
@@ -84,16 +68,29 @@ export class CultureUsersComponent implements OnInit {
             cultureId: this.culture
           })
         })
-      ).subscribe(data => {
+      ).subscribe(() => {
       this.isCultureSubscribedByUser = true
     })
   }
 
-  createEvent() {
+  navigateToUsers() {
+    const link = ['cultures/users-culture', this.culture];
+    this.router.navigate(link).then();
+  }
+
+  navigateToArticle(id: string) {
 
   }
 
-  createArticle() {
+  navigateToAllArticles() {
+
+  }
+
+  navigateToEvent(id: string) {
+
+  }
+
+  navigateToAllEvents() {
 
   }
 }

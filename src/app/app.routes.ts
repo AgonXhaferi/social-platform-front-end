@@ -5,7 +5,7 @@ import {LoginComponent} from './components/login/login.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CulturesComponent} from './components/cultures/cultures.component';
-import {CultureUsersComponent} from './components/culture-users/culture-users.component';
+import {CultureContentComponent} from './components/culture-users/culture-content.component';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {ChatComponent} from './components/chat/chat.component';
 import {authGuard} from './guards/auth.guard';
@@ -46,7 +46,7 @@ export const routes: Routes = [
   },
   {
     path: 'cultures/:cultureName',
-    component: CultureUsersComponent,
+    component: CultureContentComponent,
     canActivate: [authGuard],  // Protecting the culture users route
   },
   {

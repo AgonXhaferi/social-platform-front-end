@@ -1,0 +1,111 @@
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 10%;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.header-section button:disabled {
+  background-color: #d3d3d3; /* Light grey background */
+  color: #ffffff; /* White text */
+  cursor: not-allowed; /* Change cursor to indicate disabled */
+}
+
+.header-section h2 {
+  margin: 0;
+  font-size: 2em; /* Increase font size */
+  font-weight: 600; /* Make the text semi-bold */
+  color: #333; /* Change the color to a dark gray */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Add subtle text shadow */
+  padding: 10px 0; /* Add padding to create space around the text */
+  text-align: left; /* Align text to the left */
+}
+
+.action-buttons button {
+  margin-left: 10px;
+}
+
+.table-container {
+  width: 70%;
+  margin-inline: auto;
+  margin-top: 3em
+}
+
+table {
+  width: 80%; /* Adjust the width to be more compact */
+  margin: 20px auto; /* Add margin to center the table and some space on top */
+  border-collapse: separate; /* Use separate borders to enable border-radius */
+  border-spacing: 0; /* Remove spacing between borders */
+  border-radius: 10px; /* Make the table borders round */
+  overflow: hidden; /* Clip children elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better presentation */
+}
+
+th, td {
+  padding: 8px; /* Adjust padding to make cells more compact */
+  text-align: left; /* Align text to the left */
+}
+
+th {
+  background-color: #3f51b5 !important; /* Add background color to header cells */
+  color: #ffffff; /* White text for better contrast */
+}
+
+.mat-header-cell, .mat-cell {
+  border: 1px solid #a25050; /* Add border to cells */
+  border-left: 0; /* Remove left border for continuous look */
+  border-right: 0; /* Remove right border for continuous look */
+}
+
+.mat-header-cell:first-child, .mat-cell:first-child {
+  border-left: 1px solid #733b3b; /* Add left border to first cell in each row */
+}
+
+.mat-header-cell:last-child, .mat-cell:last-child {
+  border-right: 1px solid #722222; /* Add right border to last cell in each row */
+}
+
+.mat-header-row:first-child .mat-header-cell {
+  border-top: 1px solid #833535; /* Add top border to first header row */
+}
+
+.mat-row:first-child .mat-cell {
+  border-top: 1px solid #883737; /* Add top border to first data row */
+}
+
+.mat-row:last-child .mat-cell {
+  border-bottom: 1px solid #8c3a3a; /* Add bottom border to last data row */
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust box shadow for better presentation */
+  margin-top: 20px; /* Add margin on top of the table */
+  border-radius: 10px; /* Add border radius to match table */
+}
+
+.clickable-row {
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s;
+}
+
+.clickable-row:hover {
+  background-color: rgba(86, 141, 187, 0.49); /* Add hover effect */
+}
+
+.view-button {
+  background-color: #3f51b5; /* Primary color */
+  color: white !important; /* Text color */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px 16px; /* Padding */
+  font-size: 15px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.view-button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
