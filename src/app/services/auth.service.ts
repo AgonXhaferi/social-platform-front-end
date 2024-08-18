@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import Session from "supertokens-web-js/recipe/session";
-import {SignInResponse} from "../components/dto/sign-in-response.dto";
+import {SignInResponse} from "../components/dto/response/sign-in-response.dto";
 
 @Injectable({
   providedIn: 'root'
