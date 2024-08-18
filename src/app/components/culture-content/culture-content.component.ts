@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatTableModule} from "@angular/material/table";
-import {UserDto} from "../dto/user.dto";
+import {UserDto} from "../../dto/user.dto";
 import {concatMap, forkJoin, from, zip} from "rxjs";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";
@@ -12,7 +12,7 @@ import {SpinnerService} from "../../services/spinner.service";
 import {MatTab} from "@angular/material/tabs";
 
 @Component({
-  selector: 'app-culture-users',
+  selector: 'app-culture-content',
   standalone: true,
   imports: [MatTableModule, AsyncPipe, NgIf, MatButton, MatTab, NgForOf],
   templateUrl: './culture-content.component.html',
@@ -83,7 +83,8 @@ export class CultureContentComponent implements OnInit {
   }
 
   navigateToAllArticles() {
-
+    const link = ['cultures/culture-articles', this.culture];
+    this.router.navigate(link).then();
   }
 
   navigateToEvent(id: string) {
@@ -91,6 +92,7 @@ export class CultureContentComponent implements OnInit {
   }
 
   navigateToAllEvents() {
-
+    const link = ['cultures/culture-events', this.culture];
+    this.router.navigate(link).then();
   }
 }

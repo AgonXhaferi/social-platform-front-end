@@ -1,1 +1,16 @@
-<p>culture-articles works!</p>
+<div class="articles-page-container">
+  <div class="header-section">
+    <h2>Culture Articles</h2>
+    <button mat-raised-button color="primary" (click)="openCreateArticleDialog()">Add New Article</button>
+  </div>
+
+  <div class="articles-list">
+    <div class="article-card" *ngFor="let article of articles">
+      <h3 class="article-title">{{ article.title }}</h3>
+      <p class="article-content">{{ article.content }}</p>
+      <button mat-button color="accent" (click)="viewArticle(article)">
+        Read More
+      </button>
+    </div>
+  </div>
+</div>

@@ -5,11 +5,13 @@ import {LoginComponent} from './components/login/login.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CulturesComponent} from './components/cultures/cultures.component';
-import {CultureContentComponent} from './components/culture-users/culture-content.component';
+import {CultureContentComponent} from './components/culture-content/culture-content.component';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {ChatComponent} from './components/chat/chat.component';
 import {authGuard} from './guards/auth.guard';
 import {CultureUsersDisplayComponent} from "./components/culture-users-display/culture-users-display.component";
+import {CultureArticlesComponent} from "./components/culture-articles/culture-articles.component";
+import {CultureEventsComponent} from "./components/culture-events/culture-events.component";
 
 export const routes: Routes = [
   {
@@ -58,6 +60,16 @@ export const routes: Routes = [
     path: 'users/:userId',
     component: UserProfileComponent,
     canActivate: [authGuard],  // Protecting the user profile route
+  },
+  {
+    path: 'cultures/culture-articles/:cultureName',
+    component: CultureArticlesComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'cultures/culture-events/:cultureName',
+    component: CultureEventsComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'chat/:chatId',

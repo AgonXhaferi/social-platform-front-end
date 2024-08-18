@@ -9,7 +9,7 @@ import {
   MatHeaderRowDef,
   MatRow, MatRowDef, MatTable
 } from "@angular/material/table";
-import {UserDto} from "../dto/user.dto";
+import {UserDto} from "../../dto/user.dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {CulturesService} from "../../services/cultures.service";
@@ -18,7 +18,7 @@ import {concatMap, from, zip} from "rxjs";
 import Session from "supertokens-web-js/recipe/session";
 
 @Component({
-  selector: 'app-culture-users-display',
+  selector: 'app-culture-content-display',
   standalone: true,
   imports: [
     MatButton,

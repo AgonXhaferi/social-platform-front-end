@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {UserChatDto} from "../components/dto/users-chat.dto";
-import {IdResponseDto} from "../components/dto/response/id-response.dto";
+import {UserChatDto} from "../dto/users-chat.dto";
+import {IdResponseDto} from "../dto/response/id-response.dto";
 import {Observable} from "rxjs";
-import {UserChatResponseDto} from "../components/dto/response/user-chat.response.dto";
+import {UserChatResponseDto} from "../dto/response/user-chat.response.dto";
 
 @Injectable({
   providedIn: 'root'

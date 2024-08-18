@@ -1,8 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {CultureDto} from "../components/dto/culture.dto";
-import {UserSubscriptionDto} from "../components/dto/user-subscription.dto";
+import {CultureDto} from "../dto/culture.dto";
+import {UserSubscriptionDto} from "../dto/user-subscription.dto";
+import {CultureArticleResponseDto} from "../dto/response/culture-article-response.dto";
+import {GetLatestArticlesRequestDto} from "../dto/get-latest-articles-request.dto";
+import {GetLatestEventsRequestDto} from "../dto/get-latest-events-request.dto";
+import {CultureEventResponseDto} from "../dto/response/culture-event-response.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +36,28 @@ export class CulturesService {
         fromObject: {
           cultureName: userSubscriptionDto.cultureId,
           userId: userSubscriptionDto.userId
+        }
+      })
+    })
+  }
+
+  getLatestArticles(getLatestArticlesDto: GetLatestArticlesRequestDto): Observable<CultureArticleResponseDto[]> {
+    return this.httpClient.get<CultureArticleResponseDto[]>(`http://localhost:3000/culture/find-latest-articles`, {
+      params: new HttpParams({
+        fromObject: {
+          cultureName: getLatestArticlesDto.cultureName,
+          numberOfArticles: getLatestArticlesDto.numberOfArticles
+        }
+      })
+    })
+  }
+
+  getLatestEvents(getLatestEventsDto: GetLatestEventsRequestDto) {
+    return this.httpClient.get<CultureEventResponseDto>(`http://localhost:3000/culture/find-latest-events`, {
+      params: new HttpParams({
+        fromObject: {
+          cultureName: getLatestEventsDto.cultureName,
+          numberOfEvents: getLatestEventsDto.numberOfEvents
         }
       })
     })

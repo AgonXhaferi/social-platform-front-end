@@ -6,7 +6,7 @@ import {ChatService} from "../../services/chat.service";
 import {ActivatedRoute} from "@angular/router";
 import {concatMap, from, zip} from "rxjs";
 import Session from "supertokens-web-js/recipe/session";
-import {SendMessageDto} from "../dto/send-message.dto";
+import {SendMessageDto} from "../../dto/send-message.dto";
 import {FormsModule} from "@angular/forms";
 
 @Component({

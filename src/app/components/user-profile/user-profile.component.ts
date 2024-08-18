@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserDto} from "../dto/user.dto";
+import {UserDto} from "../../dto/user.dto";
 import {catchError, concatMap, forkJoin, from, of, zip} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import Session from "supertokens-web-js/recipe/session";
-import {FollowUserDto} from "../dto/follow-user.dto";
+import {FollowUserDto} from "../../dto/follow-user.dto";
 import {NgIf} from "@angular/common";
 import {SpinnerService} from "../../services/spinner.service";
 import {ChatService} from "../../services/chat.service";
-import {UserChatDto} from "../dto/users-chat.dto";
+import {UserChatDto} from "../../dto/users-chat.dto";
 
 @Component({
   selector: 'app-user-profile',
