@@ -22,7 +22,7 @@
     <div class="culture-articles-section">
       <h3>Culture Articles</h3>
       <ul>
-        <li *ngFor="let article of topArticles" (click)="navigateToArticle(article)">
+        <li *ngFor="let article of latestArticles" (click)="navigateToArticle(article.id)">
           {{ article.title }}
         </li>
       </ul>
@@ -32,8 +32,8 @@
     <div class="culture-events-section">
       <h3>Culture Events</h3>
       <ul>
-        <li *ngFor="let event of topEvents" (click)="navigateToEvent(event)">
-          {{ event.title }}
+        <li *ngFor="let event of latestEvents" (click)="navigateToEvent(event.id)">
+          {{ event.name }}
         </li>
       </ul>
       <button mat-raised-button color="primary" (click)="navigateToAllEvents()">View All Events</button>

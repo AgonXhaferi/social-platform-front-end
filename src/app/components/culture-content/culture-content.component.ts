@@ -10,6 +10,8 @@ import {CulturesService} from "../../services/cultures.service";
 import Session from "supertokens-web-js/recipe/session";
 import {SpinnerService} from "../../services/spinner.service";
 import {MatTab} from "@angular/material/tabs";
+import {CultureArticleResponseDto} from "../../dto/response/culture-article-response.dto";
+import {CultureEventResponseDto} from "../../dto/response/culture-event-response.dto";
 
 @Component({
   selector: 'app-culture-content',
@@ -21,8 +23,8 @@ import {MatTab} from "@angular/material/tabs";
 export class CultureContentComponent implements OnInit {
   culture: string = ""
   isCultureSubscribedByUser: boolean = false
-  topArticles: any;
-  topEvents: any;
+  latestArticles: CultureArticleResponseDto[] = [];
+  latestEvents: CultureEventResponseDto[] = [];
 
   constructor(private route: ActivatedRoute,
               private cultureService: CulturesService,
@@ -43,16 +45,33 @@ export class CultureContentComponent implements OnInit {
             throw new Error('Culture path variable incorrect');
           }
 
-          return this.cultureService.findIsUserSubscribedToCulture({
-            userId,
-            cultureId: this.culture
-          })
+          return zip([
+            this.cultureService.findIsUserSubscribedToCulture({
+                userId,
+                cultureId: this.culture
+              }
+            ),
+            this.cultureService.getLatestArticles({
+              cultureName: this.culture,
+              numberOfArticles: 5
+            }),
+            this.cultureService.getLatestEvents({
+              cultureName: this.culture,
+              numberOfEvents: 5
+            })
+          ])
         })
       ).subscribe(
       (
-        isUserSubscribed
+        [
+          isUserSubscribed,
+          latestArticles,
+          latestEvents
+        ]
       ) => {
         this.isCultureSubscribedByUser = isUserSubscribed
+        this.latestEvents = latestEvents
+        this.latestArticles = latestArticles
 
         this.spinnerService.hide()
       })

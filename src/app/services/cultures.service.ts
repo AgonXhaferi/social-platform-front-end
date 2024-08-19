@@ -52,8 +52,8 @@ export class CulturesService {
     })
   }
 
-  getLatestEvents(getLatestEventsDto: GetLatestEventsRequestDto) {
-    return this.httpClient.get<CultureEventResponseDto>(`http://localhost:3000/culture/find-latest-events`, {
+  getLatestEvents(getLatestEventsDto: GetLatestEventsRequestDto): Observable<CultureEventResponseDto[]> {
+    return this.httpClient.get<CultureEventResponseDto[]>(`http://localhost:3000/culture/find-latest-events`, {
       params: new HttpParams({
         fromObject: {
           cultureName: getLatestEventsDto.cultureName,
