@@ -5,6 +5,7 @@ import {CulturesService} from "../../services/cultures.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-create-article-dialog',
@@ -24,14 +25,15 @@ export class CreateArticleDialogComponent {
   articleForm: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.maxLength(50)]],
     content: ['', [Validators.required]],
-    culture: ['', [Validators.required, Validators.maxLength(60)]],
+    culture: ['', [Validators.required, Validators.maxLength(60)]], //this should be prefilled
   });
 
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateArticleDialogComponent>,
-    private readonly _cultureService: CulturesService
+    private readonly _cultureService: CulturesService,
+    private readonly _spinnerService: SpinnerService
   ) {
   }
 
@@ -44,9 +46,12 @@ export class CreateArticleDialogComponent {
 
   onSubmit(): void {
     if (this.articleForm.valid) {
-      // this._cultureService.createArticle(this.articleForm.value).subscribe(() => {
-      //   this.dialogRef.close('created');
-      // });
+      this._spinnerService.show()
+      this._cultureService.createArticle(this.articleForm.value)
+        .subscribe(() => {
+          this.dialogRef.close('created');
+          this._spinnerService.hide()
+        });
     }
   }
 }

@@ -1,16 +1,47 @@
-<div class="articles-page-container">
-  <div class="header-section">
-    <h2>Culture Articles</h2>
-    <button mat-raised-button color="primary" (click)="openCreateArticleDialog()">Add New Article</button>
+<div class="article-container">
+  <div class="article-sidebar">
+    <h3>Articles</h3>
+    <input
+      matInput
+      #searchBox
+      placeholder="Search Articles"
+      (input)="search(searchBox.value)"
+    />
+    <ul *ngIf="$filteredArticles | async as filteredArticles; else noFilteredArticles">
+      <li
+        *ngFor="let article of $filteredArticles | async"
+        (click)="selectArticle(article)"
+        [class.selected]="article === selectedArticle"
+      >
+        {{ article.title }}
+      </li>
+    </ul>
+    <ng-template #noFilteredArticles>
+      <ul *ngIf="$cultureArticles | async as cultureArticles">
+        <li *ngFor="let article of cultureArticles"
+            (click)="selectArticle(article)"
+            [class.selected]="article === selectedArticle">
+          {{ article.title }}
+        </li>
+      </ul>
+    </ng-template>
+    <ng-template #noArticles>
+      <p>No articles found.</p>
+    </ng-template>
   </div>
 
-  <div class="articles-list">
-    <div class="article-card" *ngFor="let article of articles">
-      <h3 class="article-title">{{ article.title }}</h3>
-      <p class="article-content">{{ article.content }}</p>
-      <button mat-button color="accent" (click)="viewArticle(article)">
-        Read More
-      </button>
-    </div>
+  <div class="article-content">
+    <h2>{{ selectedArticle?.title || 'Select an article' }}</h2>
+    <p>{{ selectedArticle?.content || 'Content will appear here' }}</p>
   </div>
+</div>
+
+<div class="article-button-container">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openCreateArticleDialog()"
+  >
+    Add New Article
+  </button>
 </div>

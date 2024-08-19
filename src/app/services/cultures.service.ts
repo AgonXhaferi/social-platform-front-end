@@ -7,6 +7,7 @@ import {CultureArticleResponseDto} from "../dto/response/culture-article-respons
 import {GetLatestArticlesRequestDto} from "../dto/get-latest-articles-request.dto";
 import {GetLatestEventsRequestDto} from "../dto/get-latest-events-request.dto";
 import {CultureEventResponseDto} from "../dto/response/culture-event-response.dto";
+import {CreateCultureArticleRequestDto} from "../dto/request/create-culture-article-request.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -42,11 +43,24 @@ export class CulturesService {
   }
 
   getLatestArticles(getLatestArticlesDto: GetLatestArticlesRequestDto): Observable<CultureArticleResponseDto[]> {
+    debugger;
     return this.httpClient.get<CultureArticleResponseDto[]>(`http://localhost:3000/culture/find-latest-articles`, {
       params: new HttpParams({
         fromObject: {
           cultureName: getLatestArticlesDto.cultureName,
           numberOfArticles: getLatestArticlesDto.numberOfArticles
+        }
+      })
+    })
+  }
+
+  findArticleByTitle(searchQuery: string, cultureName: string) {
+    debugger;
+    return this.httpClient.get<CultureArticleResponseDto[]>(`http://localhost:3000/culture/find-article-by-title`, {
+      params: new HttpParams({
+        fromObject: {
+          cultureName,
+          title: searchQuery
         }
       })
     })
@@ -61,5 +75,9 @@ export class CulturesService {
         }
       })
     })
+  }
+
+  createArticle(value: CreateCultureArticleRequestDto): Observable<string> {
+    return this.httpClient.post<string>(`http://localhost:3000/culture/article`, value, {})
   }
 }
