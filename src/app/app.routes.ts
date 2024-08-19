@@ -12,6 +12,7 @@ import {authGuard} from './guards/auth.guard';
 import {CultureUsersDisplayComponent} from "./components/culture-users-display/culture-users-display.component";
 import {CultureArticlesComponent} from "./components/culture-articles/culture-articles.component";
 import {CultureEventsComponent} from "./components/culture-events/culture-events.component";
+import {FileUploadComponent} from "./components/file-upload/file-upload.component";
 
 export const routes: Routes = [
   {
@@ -76,4 +77,8 @@ export const routes: Routes = [
     component: ChatComponent,
     canActivate: [authGuard],  // Protecting the chat route
   },
+  {
+    path: 'file',
+    component: FileUploadComponent,
+  }
 ];
