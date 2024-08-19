@@ -11,8 +11,6 @@ export class FileService {
   }
 
   uploadFile(formData: FormData) {
-
-
     debugger;
     this.httpClient.post<any>('http://localhost:3000/api/v1/file/upload', formData, {
       headers: new HttpHeaders({Accept: '*/*'}),
