@@ -1,1 +1,75 @@
-<p>culture-events works!</p>
+<div class="event-container">
+  <div class="event-sidebar">
+    <div class="header-container">
+      <h3>Events</h3>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openCreateEventDialog()"
+      >
+        Add New Event
+      </button>
+    </div>
+    <input
+      matInput
+      #searchBox
+      placeholder="Search Events"
+      (input)="search(searchBox.value)"
+    />
+    <ul *ngIf="$filteredEvents | async; else noFilteredEvents">
+      <li
+        *ngFor="let event of $filteredEvents | async"
+        (click)="selectEvent(event)"
+        [class.selected]="event === selectedEvent"
+      >
+        {{ event.name }}
+      </li>
+    </ul>
+    <ng-template #noFilteredEvents>
+      <ul *ngIf="$cultureEvents | async as cultureEvents">
+        <li
+          *ngFor="let event of cultureEvents"
+          (click)="selectEvent(event)"
+          [class.selected]="event === selectedEvent"
+        >
+          {{ event.name }}
+        </li>
+      </ul>
+    </ng-template>
+    <ng-template #noEvents>
+      <p>No events found.</p>
+    </ng-template>
+  </div>
+
+  <div class="event-content">
+    <h2>{{ selectedEvent?.name || 'Select an event' }}</h2>
+    <div class="event-details">
+      <div class="card">
+        <h3>Description</h3>
+        <p>{{ selectedEvent?.description || 'Event description' }}</p>
+      </div>
+      <div class="card">
+        <h3>Dates</h3>
+        <p><strong>Start Date:</strong> {{ selectedEvent ? (selectedEvent.startDate | date:'fullDate') : 'TBD' }}</p>
+        <p><strong>End Date:</strong> {{ selectedEvent ? (selectedEvent.endDate | date:'fullDate') : 'TBD' }}</p>
+      </div>
+      <div class="map-container card">
+        <h3>Map:</h3>
+        @if (selectedEvent && selectedEvent?.latitude && selectedEvent?.longitude) {
+          <iframe
+            width="100%"
+            height="300"
+            frameborder="0"
+            style="border:0"
+            [src]="getGoogleMapsUrl(selectedEvent.latitude, selectedEvent.longitude)"
+            allowfullscreen>
+          </iframe>
+        } @else {
+          <div class="centered-content">
+            <h2>To be displayed</h2>
+          </div>
+            }
+      </div>
+    </div>
+  </div>
+</div>

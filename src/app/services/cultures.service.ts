@@ -8,6 +8,7 @@ import {GetLatestArticlesRequestDto} from "../dto/get-latest-articles-request.dt
 import {GetLatestEventsRequestDto} from "../dto/get-latest-events-request.dto";
 import {CultureEventResponseDto} from "../dto/response/culture-event-response.dto";
 import {CreateCultureArticleRequestDto} from "../dto/request/create-culture-article-request.dto";
+import {CreateCultureEventRequestDto} from "../dto/request/create-culture-event-request.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,24 @@ export class CulturesService {
     })
   }
 
+  findEventByTitle(searchQuery: string, cultureName: string): Observable<CultureEventResponseDto[]> {
+    return this.httpClient.get<CultureEventResponseDto[]>(`http://localhost:3000/culture/find-event-by-name`, {
+      params: new HttpParams({
+        fromObject: {
+          cultureName,
+          eventName: searchQuery
+        }
+      })
+    })
+  }
+
   createArticle(value: CreateCultureArticleRequestDto): Observable<string> {
     return this.httpClient.post<string>(`http://localhost:3000/culture/article`, value, {})
+  }
+
+  createEvent(value: CreateCultureEventRequestDto): Observable<string> {
+    debugger
+    console.log(value)
+    return this.httpClient.post<string>(`http://localhost:3000/culture/event`, value, {})
   }
 }

@@ -1,0 +1,65 @@
+/* Container for the form */
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Styling for form fields */
+mat-form-field {
+  width: 100%;
+}
+
+/* Style the dialog title */
+mat-dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* Full-width buttons */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+mat-dialog-actions button {
+  min-width: 100px;
+}
+
+/* Style for error messages */
+mat-error {
+  font-size: 12px;
+  color: red;
+}
+
+/* General spacing adjustments */
+.mat-form-field {
+  margin-bottom: 16px;
+}
+
+textarea[matInput] {
+  min-height: 100px;
+}
+
+/* Custom styles for dialog content */
+.mat-dialog-container {
+  padding: 24px;
+}
+
+/* Style for dialog buttons */
+.mat-raised-button {
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Add spacing around the dialog content */
+.mat-dialog-content {
+  padding: 16px;
+}

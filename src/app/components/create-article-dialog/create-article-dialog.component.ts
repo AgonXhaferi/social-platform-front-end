@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatDialogActions, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogActions, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {CulturesService} from "../../services/cultures.service";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -22,19 +22,21 @@ import {SpinnerService} from "../../services/spinner.service";
   styleUrl: './create-article-dialog.component.css'
 })
 export class CreateArticleDialogComponent {
-  articleForm: FormGroup = this.fb.group({
-    title: ['', [Validators.required, Validators.maxLength(50)]],
-    content: ['', [Validators.required]],
-    culture: ['', [Validators.required, Validators.maxLength(60)]], //this should be prefilled
-  });
 
+  articleForm: FormGroup
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateArticleDialogComponent>,
     private readonly _cultureService: CulturesService,
-    private readonly _spinnerService: SpinnerService
+    private readonly _spinnerService: SpinnerService,
   ) {
+    this.articleForm = this.fb.group({
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      content: ['', [Validators.required]],
+      culture: [this.data.cultureName, [Validators.required]]//this should be prefilled
+    });
   }
 
   ngOnInit(): void {

@@ -1,0 +1,61 @@
+.event-container {
+  display: flex;
+}
+
+.event-sidebar {
+  width: 250px; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-right: 1px solid #ddd; /* Optional: for visual separation */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Space below header */
+}
+
+.header-container h3 {
+  margin: 0; /* Remove default margin */
+}
+
+.header-container button {
+  margin-left: 10px; /* Space between header and button */
+}
+
+.event-content {
+  flex: 1; /* Takes up remaining space */
+  padding: 20px;
+}
+
+.card {
+  background: #edeaea;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px; /* Space between cards */
+}
+
+.map-container {
+  margin-top: 20px;
+  min-height: 300px; /* Ensure space is reserved for the map */
+}
+
+/* Style for the button container */
+.event-button-container {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.event-button-container button {
+  margin: 0;
+}
+
+.centered-content{
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  margin-top: 3em;
+}

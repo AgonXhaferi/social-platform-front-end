@@ -1,1 +1,50 @@
-<p>create-event-dialog works!</p>
+<h1 mat-dialog-title>Create Event</h1>
+<div mat-dialog-content>
+  <form [formGroup]="eventForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Event Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="eventForm.get('name')?.hasError('required')">Event Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="eventForm.get('description')?.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput formControlName="longitude" type="number">
+      <mat-error *ngIf="eventForm.get('longitude')?.hasError('required')">Longitude is required</mat-error>
+      <mat-error *ngIf="eventForm.get('longitude')?.hasError('min') || eventForm.get('longitude')?.hasError('max')">Longitude must be between -180 and 180</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Latitude</mat-label>
+      <input matInput formControlName="latitude" type="number">
+      <mat-error *ngIf="eventForm.get('latitude')?.hasError('required')">Latitude is required</mat-error>
+      <mat-error *ngIf="eventForm.get('latitude')?.hasError('min') || eventForm.get('latitude')?.hasError('max')">Latitude must be between -90 and 90</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="startDate" [matDatepicker]="startDatePicker">
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="eventForm.get('startDate')?.hasError('required')">Start Date is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>End Date</mat-label>
+      <input matInput formControlName="endDate" [matDatepicker]="endDatePicker">
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="eventForm.get('endDate')?.hasError('required')">End Date is required</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
+</div>

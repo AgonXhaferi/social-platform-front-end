@@ -3,17 +3,12 @@
 <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Title</mat-label>
-    <input matInput formControlName="title" />
+    <input matInput formControlName="title"/>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Content</mat-label>
     <textarea matInput formControlName="content"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Culture</mat-label>
-    <input matInput formControlName="culture" />
   </mat-form-field>
 
   <div mat-dialog-actions>

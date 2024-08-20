@@ -119,6 +119,9 @@ export class CultureArticlesComponent implements OnInit {
   openCreateArticleDialog() {
     const dialogRef = this._dialog.open(CreateArticleDialogComponent, {
       width: '400px',
+      data: {
+        cultureName: this.cultureName
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
