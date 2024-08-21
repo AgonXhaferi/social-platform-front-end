@@ -1,0 +1,18 @@
+<div class="container">
+  <form [formGroup]="archiveCodeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="archiveCode">Archive Code</label>
+      <input id="archiveCode"
+             type="text"
+             formControlName="archiveCode"
+             class="form-control"
+             placeholder="Enter Archive Code"
+             [ngClass]="{ 'is-invalid': archiveCode?.invalid && archiveCode?.touched }"/>
+      <div *ngIf="archiveCode?.invalid && archiveCode?.touched" class="invalid-feedback">
+        <div *ngIf="archiveCode?.errors?.['required']">Archive Code is required.</div>
+        <div *ngIf="archiveCode?.errors?.['minlength']">Archive Code must be at least 3 characters.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="archiveCodeForm.invalid">Submit</button>
+  </form>
+</div>

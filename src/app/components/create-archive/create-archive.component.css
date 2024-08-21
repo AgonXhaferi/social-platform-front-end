@@ -1,0 +1,33 @@
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  font-family: Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input.is-invalid {
+  border-color: red;
+}
+
+.invalid-feedback {
+  color: red;
+  font-size: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #308d46;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,20 @@
+<div class="upload-container">
+  <h2 class="upload-title">{{ isMultiple ? "Multiple Files Upload" : "Single File Upload" }}</h2>
+  <form (ngSubmit)="uploadFiles()" class="upload-form">
+    <input class="form-element"
+           name="file"
+           type="file"
+           (change)="changeFiles($event)"
+           [multiple]="isMultiple"
+           #filesElement />
+    <div class="checkbox-container">
+      <input type="checkbox"
+             id="checkBox"
+             name="checkBox"
+             [(ngModel)]="isMultiple"
+             (change)="this.filesElement.value = ''" />
+      <label for="checkBox">Multiple Files Upload</label>
+    </div>
+    <button class="upload-btn" type="submit">Upload</button>
+  </form>
+</div>

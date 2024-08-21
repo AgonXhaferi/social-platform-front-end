@@ -12,7 +12,8 @@ import {authGuard} from './guards/auth.guard';
 import {CultureUsersDisplayComponent} from "./components/culture-users-display/culture-users-display.component";
 import {CultureArticlesComponent} from "./components/culture-articles/culture-articles.component";
 import {CultureEventsComponent} from "./components/culture-events/culture-events.component";
-import {FileUploadComponent} from "./components/file-upload/file-upload.component";
+import {FileUploadDialogComponent} from "./components/file-upload-dialog/file-upload-dialog.component";
+import {ArchiveComponent} from "./components/archive/archive.component";
 
 export const routes: Routes = [
   {
@@ -79,6 +80,6 @@ export const routes: Routes = [
   },
   {
     path: 'file',
-    component: FileUploadComponent,
+    component: ArchiveComponent,
   }
 ];
