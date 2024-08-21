@@ -22,8 +22,9 @@ export class FileUploadDialogComponent {
   files?: File[];
   isMultiple = false;
 
-  constructor(private readonly fileService: FileService,
-              private dialogRef: MatDialogRef<FileUploadDialogComponent>
+  constructor(
+    private readonly fileService: FileService,
+    private dialogRef: MatDialogRef<FileUploadDialogComponent>
   ) {
   }
 
