@@ -1,0 +1,84 @@
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.profile-header {
+  text-align: center;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.profile-header h2 {
+  font-size: 2.4em;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.profile-header h4 {
+  font-size: 1.2em;
+  color: #777;
+  margin: 0;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: #444;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-item span {
+  font-weight: bold;
+  color: #555;
+}
+
+.profile-item p {
+  margin: 0;
+  color: #888;
+}
+
+.profile-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.sign-out-button {
+  background-color: #d9534f; /* Bright red background */
+  color: #fff; /* White text */
+  padding: 12px 24px; /* Larger padding for bigger button */
+  font-size: 1.1em; /* Slightly larger text */
+  font-weight: bold; /* Bold text */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.sign-out-button:hover {
+  background-color: #c9302c; /* Darker red on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.sign-out-button:active {
+  background-color: #ac2925; /* Even darker red on click */
+  transform: translateY(0); /* Remove lift on click */
+}

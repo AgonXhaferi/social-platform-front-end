@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {UserDto} from "../dto/user.dto";
+import {UserResponseDto} from "../dto/response/user-response.dto";
 import {FollowUserDto} from "../dto/follow-user.dto";
 
 @Injectable({
@@ -12,12 +12,12 @@ export class UserService {
   constructor(private readonly httpClient: HttpClient) {
   }
 
-  findUsersByPrimaryCultureId(cultureId: string): Observable<UserDto[]> {
-    return this.httpClient.get<UserDto[]>(`http://localhost:3000/users/culture/${cultureId}`)
+  findUsersByPrimaryCultureId(cultureId: string): Observable<UserResponseDto[]> {
+    return this.httpClient.get<UserResponseDto[]>(`http://localhost:3000/users/culture/${cultureId}`)
   }
 
-  findUserById = (userId: string): Observable<UserDto> => {
-    return this.httpClient.get<UserDto>(`http://localhost:3000/users/${userId}`)
+  findUserById = (userId: string): Observable<UserResponseDto> => {
+    return this.httpClient.get<UserResponseDto>(`http://localhost:3000/users/${userId}`)
   }
 
   followUser = (followUserDto: FollowUserDto): Observable<string> =>

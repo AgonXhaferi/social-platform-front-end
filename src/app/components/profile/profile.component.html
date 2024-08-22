@@ -1,4 +1,37 @@
-<button (click)="signOut()">Sign out</button>
+<div class="profile-container" *ngIf="user">
+  <div class="profile-header">
+    <h2>{{ user.name }} {{ user.lastname }}</h2>
+    <h4>&#64;{{ user.username }}</h4>
+  </div>
 
+  <div class="profile-details">
+    <div class="profile-info">
+      <div class="profile-item">
+        <span>Email:</span>
+        <p>{{ user.email }}</p>
+      </div>
+      <div class="profile-item">
+        <span>Country:</span>
+        <p>{{ user.country }}</p>
+      </div>
+      <div class="profile-item">
+        <span>Postal Code:</span>
+        <p>{{ user.postalCode }}</p>
+      </div>
+      <div class="profile-item">
+        <span>Street:</span>
+        <p>{{ user.street }}</p>
+      </div>
+      <div class="profile-item">
+        <span>Age:</span>
+        <p>{{ user.age }}</p>
+      </div>
+    </div>
+  </div>
 
-<div>{{ userId }}</div>
+  <div class="profile-footer">
+    <button mat-raised-button color="warn" (click)="signOut()" class="sign-out-button">
+      Sign Out
+    </button>
+  </div>
+</div>

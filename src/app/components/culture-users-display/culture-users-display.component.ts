@@ -9,7 +9,7 @@ import {
   MatHeaderRowDef,
   MatRow, MatRowDef, MatTable
 } from "@angular/material/table";
-import {UserDto} from "../../dto/user.dto";
+import {UserResponseDto} from "../../dto/response/user-response.dto";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {CulturesService} from "../../services/cultures.service";
@@ -38,7 +38,7 @@ import Session from "supertokens-web-js/recipe/session";
 })
 export class CultureUsersDisplayComponent implements OnInit {
   culture: string = ""
-  users: UserDto[] = []
+  users: UserResponseDto[] = []
 
   displayedColumns: string[] = [
     'name',
@@ -82,7 +82,7 @@ export class CultureUsersDisplayComponent implements OnInit {
   }
 
 
-  onRowClicked(row: UserDto): void {
+  onRowClicked(row: UserResponseDto): void {
     this.spinnerService.show()
 
     const link = ['/users', row.id];

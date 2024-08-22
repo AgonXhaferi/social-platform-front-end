@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatTableModule} from "@angular/material/table";
-import {UserDto} from "../../dto/user.dto";
+import {UserResponseDto} from "../../dto/response/user-response.dto";
 import {concatMap, forkJoin, from, zip} from "rxjs";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {UserService} from "../../services/user.service";

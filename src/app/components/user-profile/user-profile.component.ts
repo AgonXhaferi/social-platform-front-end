@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserDto} from "../../dto/user.dto";
+import {UserResponseDto} from "../../dto/response/user-response.dto";
 import {catchError, concatMap, forkJoin, from, of, zip} from "rxjs";
 import {UserService} from "../../services/user.service";
 import {MatCardModule} from "@angular/material/card";
@@ -23,7 +23,7 @@ import {UserChatDto} from "../../dto/users-chat.dto";
 export class UserProfileComponent implements OnInit {
 
   cultureUsersId: string | null = ""
-  cultureUser?: UserDto
+  cultureUser?: UserResponseDto
 
   userId: string = ""
   areFollowers: boolean = false
