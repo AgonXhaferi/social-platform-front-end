@@ -14,8 +14,13 @@
           </mat-expansion-panel-header>
           <mat-form-field appearance="fill">
             <mat-label>Culture</mat-label>
-            <input matInput id="culture" formControlName="culture" />
+            <mat-select formControlName="culture">
+              <mat-option *ngFor="let culture of cultures" [value]="culture.name">
+                {{ culture.name }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label>Age</mat-label>
             <input matInput id="age" type="number" formControlName="age" />

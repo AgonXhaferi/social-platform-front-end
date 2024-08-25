@@ -10,6 +10,10 @@ import {AuthService} from "../../services/auth.service";
 import {SpinnerService} from "../../services/spinner.service";
 import {lastValueFrom} from "rxjs";
 import {AuthenticationResponse} from "../../dto/response/sign-in-response.dto";
+import {CulturesService} from "../../services/cultures.service";
+import {CultureResponseDto} from "../../dto/response/culture-response.dto";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-register',
@@ -23,7 +27,10 @@ import {AuthenticationResponse} from "../../dto/response/sign-in-response.dto";
     MatInputModule,
     MatButtonModule,
     MatAccordion,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelect,
+    MatOption,
+    NgForOf
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -43,15 +50,23 @@ export class RegisterComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
+  cultures: CultureResponseDto[] = []
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private spinnerService: SpinnerService,
+              private readonly _cultureService: CulturesService,
               private router: Router) {
 
   }
 
   ngOnInit(): void {
+    this._cultureService.getAllCultures().subscribe(
+      (cultures) => {
+        this.cultures = cultures;
+      }
+    );
+
   }
 
   async onSubmit() {

@@ -98,4 +98,8 @@ export class CulturesService {
     console.log(value)
     return this.httpClient.post<string>(`http://localhost:3000/culture/event`, value, {})
   }
+
+  getAllCultures(): Observable<CultureEventResponseDto[]> {
+    return this.httpClient.get<CultureEventResponseDto[]>(`http://localhost:3000/culture`)
+  }
 }
