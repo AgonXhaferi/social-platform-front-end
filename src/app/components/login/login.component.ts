@@ -7,6 +7,8 @@ import {MatInput} from "@angular/material/input";
 import {Router} from "@angular/router";
 import {SpinnerService} from "../../services/spinner.service";
 import {AuthService} from "../../services/auth.service";
+import {concatMap, lastValueFrom, of} from "rxjs";
+import Session from "supertokens-web-js/recipe/session";
 
 @Component({
   selector: 'app-login',
@@ -40,16 +42,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.isAuthenticated$.subscribe(
+    this.authService.isAuthenticated().then(
       (isAuthenticated) => {
         if (isAuthenticated) {
           this.router.navigate(['/welcome'])
             .then()
         }
-      })
+      }
+    )
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.signInForm.valid) {
       this.spinnerService.show()
 
@@ -62,28 +65,25 @@ export class LoginComponent implements OnInit {
         }))
       };
 
-      this.authService.signIn(signInData)
-        .pipe()
-        .subscribe(async data => {
-          if (data.status !== 'OK') {
-            alert(`Username or password incorrect, ${data.status}`)
+      const signInResponse = await lastValueFrom(this.authService.signIn(signInData))
 
-            this.signInForm.reset()
-            this.spinnerService.hide()
+      if (signInResponse.status !== 'OK') {
+        alert(`Username or password incorrect, ${signInResponse.status}`)
 
-            return;
-          }
+        this.signInForm.reset()
+        this.spinnerService.hide()
 
-          this.navigateToWelcome()
-        })
+        return;
+      }
+
+      this.navigateToHome()
     }
   }
 
-  navigateToWelcome() {
-    this.router.navigate(['/welcome'])
+  navigateToHome() {
+    this.router.navigate(['/home'])
       .then(
         () => {
-          this.authService.isAuthenticatedSubject.next(true)
           this.spinnerService.hide()
         }
       )

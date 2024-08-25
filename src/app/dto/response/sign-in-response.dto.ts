@@ -1,3 +1,3 @@
-export interface SignInResponse{
+export interface AuthenticationResponse {
   status: string
 }

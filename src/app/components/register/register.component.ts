@@ -8,6 +8,8 @@ import {MatAccordion, MatExpansionModule, MatExpansionPanel, MatExpansionPanelTi
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {SpinnerService} from "../../services/spinner.service";
+import {lastValueFrom} from "rxjs";
+import {AuthenticationResponse} from "../../dto/response/sign-in-response.dto";
 
 @Component({
   selector: 'app-register',
@@ -52,8 +54,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.registerForm.valid) {
+      debugger;
+      this.spinnerService.show()
       const formValues = this.registerForm.value;
 
       const registerData = {
@@ -63,21 +67,21 @@ export class RegisterComponent implements OnInit {
         }))
       };
 
-      this.authService.register(registerData)
-        .subscribe(data => {
-          this.navigateToWelcome()
-        })
+      const signUpResponse = await lastValueFrom(this.authService.register(registerData))
+
+      if (signUpResponse.status === 'OK') {
+        this.spinnerService.hide()
+
+        this.navigateToHome()
+      }
+
+      this.spinnerService.hide()
     }
   }
 
-  navigateToWelcome() {
-    this.router.navigate(['/welcome'])
-      .then(
-        () => {
-          this.authService.isAuthenticatedSubject.next(true)
-          this.spinnerService.hide()
-        }
-      )
+  navigateToHome() {
+    debugger;
+    this.router.navigate(['/home'])
   }
 
 }

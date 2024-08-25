@@ -5,6 +5,7 @@ import {Router, RouterLink} from "@angular/router";
 import {MatIconButton} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 import {AuthService} from "../../services/auth.service";
+import {from} from "rxjs";
 
 @Component({
   selector: 'app-header',
@@ -20,20 +21,19 @@ import {AuthService} from "../../services/auth.service";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  isAuthenticated: boolean = false
+  isAuthenticated: boolean = false;
 
-  constructor(private authService: AuthService,
-              private router: Router) {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.authService.isAuthenticated$
-      .subscribe((isAuthenticated) => {
+    this.authService.isAuthenticated$.subscribe(
+      (isAuthenticated) => {
         this.isAuthenticated = isAuthenticated;
-      });
+      }
+    );
   }
 
   redirect() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 }

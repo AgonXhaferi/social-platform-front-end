@@ -2,56 +2,48 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, tap} from "rxjs";
 import Session from "supertokens-web-js/recipe/session";
-import {SignInResponse} from "../dto/response/sign-in-response.dto";
+import {AuthenticationResponse} from "../dto/response/sign-in-response.dto";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-
   constructor(private readonly httpClient: HttpClient) {
-    this.checkAuthStatus().then();
+    this.updateAuthStatus()
   }
 
-  signIn(loginData: any): Observable<SignInResponse> {
-    return this.httpClient.post<SignInResponse>(
+  signIn(loginData: any): Observable<AuthenticationResponse> {
+    return this.httpClient.post<AuthenticationResponse>(
       'http://localhost:3000/supertokens/signin',
       loginData
-    )
+    ).pipe(
+      tap(() => this.updateAuthStatus())
+    );
   }
 
   async signOut() {
     await Session.signOut();
-    this.isAuthenticatedSubject.next(false);
+    this.updateAuthStatus();
   }
 
-  register(registerData: any) {
-    return this.httpClient.post(
+  register(registerData: any): Observable<AuthenticationResponse> {
+    return this.httpClient.post<AuthenticationResponse>(
       'http://localhost:3000/supertokens/signup',
       registerData
-    )
+    ).pipe(
+      tap(() => this.updateAuthStatus())
+    );
   }
 
-  async checkAuthStatus() {
-    const doesSessionExist = await Session.doesSessionExist();
-    this.isAuthenticatedSubject.next(doesSessionExist);
-
-    return doesSessionExist;
+  async isAuthenticated(): Promise<boolean> {
+    return await Session.doesSessionExist();
   }
 
-  async getAccessToken() {
-    const session = await Session.doesSessionExist()
-
-    if (session) {
-      const tokenData = await Session.getAccessToken()
-
-      const accountId = await Session.getUserId()
-      const tokenDataJson = await Session.getAccessTokenPayloadSecurely()
-      console.log(tokenDataJson)
-    }
-
+  private async updateAuthStatus() {
+    const isAuthenticated = await Session.doesSessionExist();
+    this.isAuthenticatedSubject.next(isAuthenticated);
   }
 }

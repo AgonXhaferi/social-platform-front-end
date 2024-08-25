@@ -22,8 +22,10 @@ export class HomeComponent {
   constructor(private authService: AuthService, private spinnerService: SpinnerService) {
     this.spinnerService.show()
 
-    this.authService.checkAuthStatus()
+    debugger;
+    this.authService.isAuthenticated()
       .then(isUserLoggedIn => {
+        debugger;
         this.isUserLoggedIn = isUserLoggedIn;
         this.spinnerService.hide()
       })

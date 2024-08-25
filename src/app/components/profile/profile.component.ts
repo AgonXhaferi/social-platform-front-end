@@ -9,6 +9,7 @@ import {UserResponseDto} from "../../dto/response/user-response.dto";
 import {concatMap, from, of} from "rxjs";
 import {NgIf} from "@angular/common";
 import {MatButton} from "@angular/material/button";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -23,9 +24,10 @@ import {MatButton} from "@angular/material/button";
 export class ProfileComponent implements OnInit {
   user: UserResponseDto | undefined
 
-  constructor(private _authService: AuthService,
-              private _spinnerService: SpinnerService,
-              private readonly _userService: UserService,) {
+  constructor(private readonly _authService: AuthService,
+              private readonly _spinnerService: SpinnerService,
+              private readonly _userService: UserService,
+              private readonly router: Router) {
   }
 
   ngOnInit(): void {
@@ -49,6 +51,14 @@ export class ProfileComponent implements OnInit {
 
     await this._authService.signOut()
 
-    this._spinnerService.hide()
+    debugger;
+    const sessionExist = await Session.doesSessionExist()
+
+    console.log(sessionExist)
+
+    this.router.navigate(['/home'])
+      .then(
+        () => this._spinnerService.hide()
+      )
   }
 }
