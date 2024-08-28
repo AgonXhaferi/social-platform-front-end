@@ -27,3 +27,12 @@ mat-list-item:hover {
 mat-list {
   margin-top: 20px;
 }
+
+.scrollable-list {
+  max-height: 200px; /* Set desired height */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+.search-field {
+  width: 100%;
+}

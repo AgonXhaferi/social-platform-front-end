@@ -19,7 +19,7 @@ export class CulturesService {
   }
 
   findCultureById(cultureId: string): Observable<CultureDto[]> {
-    return this.httpClient.get<CultureDto[]>(`http://localhost:3000/culture`, {
+    return this.httpClient.get<CultureDto[]>(`http://localhost:3000/culture/name`, {
       params: new HttpParams({
         fromObject: {
           cultureName: cultureId,
