@@ -25,8 +25,8 @@ export class ChatService {
     })
   }
 
-  createChat(usersChatDto: UserChatDto) {
-    return this.httpClient.post<string>(`http://localhost:3000/chat`, usersChatDto);
+  createChat(usersChatDto: UserChatDto): Observable<IdResponseDto> {
+    return this.httpClient.post<IdResponseDto>(`http://localhost:3000/chat`, usersChatDto);
   }
 
   findChatById(id: string): Observable<UserChatResponseDto> {

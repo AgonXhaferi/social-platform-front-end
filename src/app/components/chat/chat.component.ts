@@ -49,6 +49,7 @@ export class ChatComponent implements OnInit, OnDestroy {
           throw new Error('chatId param must be provided')
         }
 
+        debugger;
         return zip([
             this._chatService.findChatById(this.chatId),
             from(Session.getUserId())

@@ -117,8 +117,9 @@ export class UserProfileComponent implements OnInit {
           })
         })
       ).subscribe(responseId => {
-        if (typeof responseId === "string") {
-          this._router.navigate([`/chat`, responseId])
+        debugger;
+        if (typeof responseId === "object" && responseId.id) {
+          this._router.navigate([`/chat`, responseId.id])
             .then()
         }
       })
