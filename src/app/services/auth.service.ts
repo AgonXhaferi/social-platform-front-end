@@ -46,4 +46,8 @@ export class AuthService {
     const isAuthenticated = await Session.doesSessionExist();
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
+
+  async attemptRefresh(): Promise<boolean> {
+    return Session.attemptRefreshingSession()
+  }
 }

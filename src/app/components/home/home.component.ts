@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {SpinnerService} from "../../services/spinner.service";
 import {NgIf} from "@angular/common";
 import {WelcomeComponent} from "../welcome/welcome.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,10 @@ import {WelcomeComponent} from "../welcome/welcome.component";
 export class HomeComponent {
   isUserLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService, private spinnerService: SpinnerService) {
+  constructor(
+    private authService: AuthService,
+    private spinnerService: SpinnerService,
+    private router: Router) {
     this.spinnerService.show()
 
     debugger;
@@ -28,6 +32,18 @@ export class HomeComponent {
         debugger;
         this.isUserLoggedIn = isUserLoggedIn;
         this.spinnerService.hide()
+      })
+      .catch(() => {
+        return this.authService.attemptRefresh()
+      })
+      .then((refreshSuccessful) => {
+        this.spinnerService.hide()
+
+        if (typeof refreshSuccessful === 'boolean') {
+          if (!refreshSuccessful) {
+            this.router.navigate(['/login'])
+          }
+        }
       })
   }
 }
